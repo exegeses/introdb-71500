@@ -20,6 +20,7 @@
       FROM destinos, regiones  
       WHERE destinos.idRegion = regiones.idRegion;  
 
+
     SELECT prdNombre, prdPrecio, mkNombre  
       FROM productos, marcas  
       WHERE productos.idMarca = marcas.idMarca;
@@ -34,3 +35,50 @@
         AND productos.idCategoria = categorias.idCategorias;
 
 ## 2.- Join
+
+> En la técnica **JOIN** no se menciona en el listado de tablas (después del FROM) todas las tablas necesarias.
+> Sólo se menciona la tabla principal
+> Y luego utilizamos la palabra reservada **JOIN** 
+> para mencionar la tabla secundaria.
+> Y finalizamos igualando la columna en común 
+> después de la palabra **ON**
+
+> Sintáxis: 
+
+    SELECT colTabla1, coltabla1, coltabla2  
+      FROM tabla1  
+      JOIN tabla2  
+        ON tabla1.fk = tabla2.pk;
+        
+> Ejemplo práctico: 
+
+    SELECT aeropuerto, precio, nombre  
+      FROM destinos  
+      JOIN regiones  
+        ON destinos.idRegion = regiones.idRegion;
+
+
+    SELECT prdNombre, prdPrecio, mkNombre  
+      FROM productos  
+      JOIN marcas  
+        ON productos.idMarca = marcas.idMarca;
+
+    SELECT prdNombre, prdPrecio, mkNombre, catNombre  
+      FROM productos  
+      JOIN marcas  
+        ON productos.idMarca = marcas.idMarca  
+      JOIN categorias  
+        ON productos.idCategoria = categorias.idCategoria;
+
+----
+**revisar**
+
+    SELECT prdNombre, prdPrecio, mkNombre, catNombre  
+      FROM productos  
+      JOIN marcas  
+         ON productos.idMarca = marcas.idMarca  
+      JOIN categorias  
+        ON productos.idCategoria = categorias.idCategoria
+      WHERE productos.idCategoria IN (2, 3)
+        ORDER BY prdNombre;
+	
